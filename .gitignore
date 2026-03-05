@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.env
+venv/
+
+# Data (raw/processed not versioned)
+data/raw/
+data/processed/
+
+# Output dirs (results stay, large run dirs don't)
+out_*/
+*.pkl
+
+# Data: raw/processed not versioned, but results ARE versioned
+data/raw/
+data/processed/
+!data/results/
+!data/results/*.csv
+!data/results/*.json
+!data/results/*.txt
+
+# Notebooks checkpoints
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+Thumbs.db

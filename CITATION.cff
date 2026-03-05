@@ -1,0 +1,53 @@
+cff-version: 1.2.0
+message: "If you use Kappa-FIN or the Kappa Method observables (Ξ, Oh, φ, η) in your research, please cite as below."
+type: software
+title: "Kappa-FIN: Topological Early Warning System for Financial Market Crises"
+version: "0.1.0"
+date-released: "2026-03-01"
+license: CC-BY-4.0
+url: "https://github.com/odavidohio/kappa-fin"
+repository-code: "https://github.com/odavidohio/kappa-fin"
+
+authors:
+  - family-names: "Ohio"
+    given-names: "David"
+    email: "odavidohio@gmail.com"
+    orcid: ""
+
+abstract: >
+  Kappa-FIN applies the Kappa Method — persistent homology H₁ of rolling
+  correlation networks combined with Forman-Ricci curvature — to detect
+  systemic risk precursors in financial markets. The system uses two
+  complementary criteria (Rayleigh: Ohio Number Oh; Prandtl: damage integral
+  φ) with automated CALM baseline identification (including the KCPT
+  knee-phi-tail anti-contamination penalty) and dual crossing detection.
+  Validated across seven historical crisis scenarios including the 2008
+  Global Financial Crisis, COVID-19 crash, dot-com bubble, 1987 crash,
+  Volmageddon 2018, Euro/Taper tantrum, and the 2022 Fed rate hike cycle.
+
+keywords:
+  - topological data analysis
+  - persistent homology
+  - financial markets
+  - systemic risk
+  - early warning signals
+  - Forman-Ricci curvature
+  - correlation networks
+  - Kappa Method
+  - Law of Ohio
+  - 2008 financial crisis
+  - COVID-19 market crash
+
+references:
+  - type: software
+    title: "Kappa-Method: Topological Framework for Coherence Analysis"
+    url: "https://github.com/odavidohio/kappa-method"
+    authors:
+      - family-names: "Ohio"
+        given-names: "David"
+  - type: software
+    title: "Kappa-Attention-Regimes: Hallucination Detection in LLMs"
+    url: "https://github.com/odavidohio/kappa-attention-regimes"
+    authors:
+      - family-names: "Ohio"
+        given-names: "David"

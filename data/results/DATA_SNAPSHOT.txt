@@ -1,0 +1,76 @@
+======================================================================
+KAPPA-FIN — SNAPSHOT DE DADOS DO ESTUDO
+======================================================================
+Gerado em : 2026-03-05 16:28:47 UTC
+Autor     : David Ohio <odavidohio@gmail.com>
+Repositório: https://github.com/odavidohio/kappa-fin
+
+Este arquivo documenta os dados exatos utilizados nas análises.
+Se os preços ajustados forem revisados pelo provedor (Yahoo Finance),
+os checksums SHA-256 permitirão identificar a divergência.
+
+======================================================================
+ESTUDO: GFC2008
+======================================================================
+Período     : 2006-01-01 → 2010-07-01
+Arquivo CSV : prices_gfc2008.csv
+Linhas      : 1131 dias úteis
+Tickers     : 12
+  Utilizados: ['DIA', 'GLD', 'IEF', 'IWM', 'LQD', 'QQQ', 'SPY', 'TLT', 'XLE', 'XLF', 'XLK', 'XLV']
+SHA-256     : 314f6ff36fceea4822a90242ba55ced5016fc4c49eaad25d90cd71d01e2a3616
+Download em : 2026-03-05T16:28:26.178154Z
+Nota        : GFC 2008. HYG excluded (launched Apr 2007). USO excluded (insufficient pre-crisis history).
+
+======================================================================
+ESTUDO: COVID2020
+======================================================================
+Período     : 2018-01-01 → 2021-12-31
+Arquivo CSV : prices_covid2020.csv
+Linhas      : 1007 dias úteis
+Tickers     : 12
+  Utilizados: ['GLD', 'HYG', 'IWM', 'LQD', 'QQQ', 'SPY', 'TLT', 'USO', 'XLE', 'XLF', 'XLK', 'XLV']
+SHA-256     : 832a09835d5f6bec91dfb2eeec88a80f4b6fbba1778ca116461e2ded46c068e8
+Download em : 2026-03-05T16:28:28.190358Z
+Nota        : COVID-19 crash 2020.
+
+======================================================================
+ESTUDO: RATES2022
+======================================================================
+Período     : 2021-01-01 → 2023-12-31
+Arquivo CSV : prices_rates2022.csv
+Linhas      : 753 dias úteis
+Tickers     : 10
+  Utilizados: ['GLD', 'HYG', 'IEF', 'IWM', 'LQD', 'QQQ', 'SPY', 'TLT', 'USO', 'XLF']
+SHA-256     : 724e234573c4270f6c2af26cb5963d1c6a278e21696e480a0aff053b6b28c5a3
+Download em : 2026-03-05T16:28:29.477759Z
+Nota        : Fed rate hike cycle / bond crisis 2022.
+
+======================================================================
+COMO VERIFICAR
+======================================================================
+
+1. Clone o repositório e instale as dependências:
+   git clone https://github.com/odavidohio/kappa-fin.git
+   pip install -r requirements.txt
+
+2. Baixe os dados:
+   python scripts/save_study_data.py
+
+3. Verifique os checksums:
+   python scripts/verify_data.py
+
+Se os checksums divergirem, o provedor (Yahoo Finance) revisou
+os preços ajustados retroativamente. Neste caso, utilize os CSVs
+originais deste snapshot para reproduzir os resultados do paper.
+
+======================================================================
+FONTE DOS DADOS
+======================================================================
+
+Provedor    : Yahoo Finance via yfinance (https://github.com/ranaroussi/yfinance)
+Tipo        : Preços de fechamento ajustados (split + dividendo)
+Frequência  : Diária (1d)
+Fuso horário: UTC (yfinance padrão)
+
+AVISO: Yahoo Finance pode revisar preços ajustados retroativamente.
+Os checksums acima referem-se à versão baixada na data indicada.
