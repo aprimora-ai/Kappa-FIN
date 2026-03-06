@@ -2,6 +2,7 @@
 
 **Topological Early Warning System for Financial Market Crises**
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18883585.svg)](https://doi.org/10.5281/zenodo.18883585)
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/)
 [![Part of Kappa-Method](https://img.shields.io/badge/Kappa-Method-ecosystem-green)](https://github.com/odavidohio/kappa-method)
@@ -127,7 +128,7 @@ cfg = Config(
     calm_search_to="2007-06-30",
     calm_length_days=504,
     delta=0.08,
-    gamma=0.97,
+    gamma=0.985,
     pre_q=0.968,
     out="./results/gfc2008",
 )
@@ -160,7 +161,7 @@ Each run produces in `--out` directory:
 | `calm_length_days` | 504 | CALM segment length (~2 trading years) |
 | `calm_search_to` | — | Search CALM before this date |
 | `delta` | 0.08 | Damage sensitivity |
-| `gamma` | 0.97 | Memory decay |
+| `gamma` | 0.985 | Structural memory decay — γ ∈ [0.98, 0.99] |
 | `pre_q` | 0.968 | Quantile for Oh baseline |
 | `oh_persist_sens` | 2 | Sensitivity persistence (days) |
 | `oh_persist_confirm` | 5 | Confirmation persistence (days) |
@@ -222,6 +223,19 @@ kappa-fin/
 
 ---
 
+## Academic Papers
+
+Formal peer-review-ready write-ups of the method and its financial validation are available in the `paper/` directory:
+
+| Language | File |
+|---|---|
+| Portuguese | [`paper/artigo_kappa_fin_pt_v3.pdf`](paper/artigo_kappa_fin_pt_v3.pdf) |
+| English | [`paper/artigo_kappa_fin_en_v3.pdf`](paper/artigo_kappa_fin_en_v3.pdf) |
+
+The papers document: (1) full mathematical formalism aligned with the Kappa Method README; (2) GFC 2008 case-study results with dual-crossing timeline; (3) COVID-19 correct-negative result; (4) reproducibility block with exact parameters and SHA-256 checksums.
+
+---
+
 ## Citation
 
 ```bibtex
@@ -229,6 +243,7 @@ kappa-fin/
   author    = {Ohio, David},
   title     = {Kappa-FIN: Topological Early Warning System for Financial Market Crises},
   year      = {2026},
+  doi       = {10.5281/zenodo.18883585},
   url       = {https://github.com/odavidohio/kappa-fin},
   license   = {CC BY 4.0}
 }
