@@ -2,15 +2,15 @@
 
 **Topological Early Warning System for Financial Market Crises**
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18883585.svg)](https://doi.org/10.5281/zenodo.18883585)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18883821.svg)](https://doi.org/10.5281/zenodo.18883821)
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/)
-[![Part of Kappa-Method](https://img.shields.io/badge/Kappa-Method-ecosystem-green)]([https://github.com/odavidohio/kappa-method](https://github.com/aprimora-ai/Kappa-Method.git))
+[![Part of Kappa-Method](https://img.shields.io/badge/Kappa--Method-ecosystem-brightgreen)](https://github.com/aprimora-ai/Kappa-Method)
 
 Kappa-FIN applies the **Kappa Method** — persistent homology H₁ + Forman-Ricci curvature on rolling correlation networks — to detect systemic risk precursors in financial markets weeks to months before crises materialize.
 
-**Author:** David Ohio · [odavidohio@gmail.com](mailto:odavidohio@gmail.com) · Independent AI Safety Researcher  
-**Repository:** [github.com/odavidohio/kappa-fin](https://github.com/odavidohio/kappa-fin)
+**Author:** David Ohio · [odavidohio@gmail.com](mailto:odavidohio@gmail.com) · Independent Researcher  
+**Repository:** [github.com/aprimora-ai/Kappa-FIN](https://github.com/aprimora-ai/Kappa-FIN)
 
 ---
 
@@ -69,15 +69,17 @@ Analysis report + phase plots + warming indicators
 
 ## Validated Crisis Scenarios
 
-| Crisis | Period | Tickers | Early Warning |
+| Crisis | Period | Tickers | Result |
 |---|---|---|---|
-| **GFC 2008** | 2006–2010 | 12 ETFs¹ (equities, sectors, credit, gold) | φ crossing confirmed: Jun 2008, ~3 months before Lehman |
-| **COVID 2020** | 2018–2021 | 12 ETFs | Signal in late Feb / early March 2020 |
-| **1987 Crash** | 1985–1989 | Equity ETFs/proxies | Pre-crash structural build-up |
-| **Dot-com 2000** | 1998–2003 | SPY, QQQ, DIA, GLD, TLT | NASDAQ peak → coherence collapse |
-| **Euro/Taper 2011** | 2009–2015 | Multi-asset | Sovereign stress precursor |
-| **Volmageddon 2018** | 2017–2019 | Equities + VIX proxies | XIV collapse signal |
-| **Rates 2022** | 2021–2023 | Bonds + equities | Fed pivot → bond crisis |
+| **GFC 2008** | 2005–2010 | 14 ETFs¹ | ✅ φ crossing confirmed: **2008-07-17** (~60 days before Lehman) |
+| **COVID-19 2020** | 2018–2021 | 14 ETFs | ✅ **Correct negative** — no structural precursor detected (exogenous shock) |
+| **1987 Crash** | 1985–1989 | Equity ETFs/proxies | ⚠️ No crossing detected (data universe limitation) |
+| **Dot-com 2000** | 1999–2003 | SPY, QQQ, DIA, GLD, TLT | ✅ φ crossing confirmed: 2002-08-21 (slow-motion structural collapse) |
+| **Volmageddon 2018** | 2017–2019 | Equities + VIX proxies | ✅ Oh crossing confirmed: 2019-09-25 |
+| **Euro/Taper 2011** | 2009–2015 | Multi-asset | 🔄 In progress |
+| **Rates 2022** | 2021–2023 | Bonds + equities | 🔄 In progress |
+
+> **Note on COVID-19:** The absence of a signal is the expected and scientifically correct result. The Kappa Method detects *endogenous* structural deterioration — the gradual loss of adaptive capacity that precedes self-generated crises. The COVID-19 crash was an exogenous shock with no internal structural precursor. This discriminative capacity (distinguishing endogenous collapse from exogenous shock) is absent from conventional risk metrics.
 
 ---
 
@@ -91,8 +93,8 @@ Analysis report + phase plots + warming indicators
 ## Installation
 
 ```bash
-git clone https://github.com/odavidohio/kappa-fin.git
-cd kappa-fin
+git clone https://github.com/aprimora-ai/Kappa-FIN.git
+cd Kappa-FIN
 pip install -r requirements.txt
 pip install -e .
 ```
@@ -188,8 +190,8 @@ Kappa-FIN is an empirical application of the **Law of Ohio** (Organized Hallucin
 In financial markets: as price discovery degrades (systemic stress, correlated selling), the correlation network transitions from sparse/heterogeneous topology to a tightly organized, high-coherence configuration — precisely the signature H₁ persistent homology detects.
 
 This generalizes across domains:
-- **LLMs:** hallucinating models show 15–18% higher topological coherence than factual responses → [Kappa-LLM](https://github.com/odavidohio/kappa-method)
-- **Education:** dropout students show φ-crossing weeks before disengagement → [Kappa-EDU](https://github.com/odavidohio/kappa-edu)
+- **LLMs:** hallucinating models show 15–18% higher topological coherence than factual responses → [Kappa-LLM](https://github.com/aprimora-ai/Kappa-Attention-Regimes)
+- **Education:** dropout students show φ-crossing weeks before disengagement → [Kappa-EDU](https://github.com/aprimora-ai/Kappa-Education)
 - **Financial markets:** pre-crisis periods show organized H₁ mass growth → this repository
 
 ---
@@ -243,8 +245,8 @@ The papers document: (1) full mathematical formalism aligned with the Kappa Meth
   author    = {Ohio, David},
   title     = {Kappa-FIN: Topological Early Warning System for Financial Market Crises},
   year      = {2026},
-  doi       = {10.5281/zenodo.18883585},
-  url       = {https://github.com/odavidohio/kappa-fin},
+  doi       = {10.5281/zenodo.18883821},
+  url       = {https://github.com/aprimora-ai/Kappa-FIN},
   license   = {CC BY 4.0}
 }
 ```
@@ -253,9 +255,9 @@ The papers document: (1) full mathematical formalism aligned with the Kappa Meth
 
 ## Related Work
 
-- **[Kappa-Method](https://github.com/odavidohio/kappa-method)** — Theoretical foundation: Ω, Φ, η, Ξ, Δ observables and the Law of Ohio
-- **[Kappa-LLM / Kappa-Attention-Regimes](https://github.com/odavidohio/kappa-attention-regimes)** — Hallucination detection in large language models (AUC up to 94.2% on Phi-3)
-- **[Kappa-EDU](https://github.com/odavidohio/kappa-edu)** — Student dropout prediction via topological engagement dynamics (OULAD dataset)
+- **[Kappa-Method](https://github.com/aprimora-ai/Kappa-Method)** — Theoretical foundation: Oh, Φ, η, Ξ, DEF observables and the Law of Ohio
+- **[Kappa-LLM / Kappa-Attention-Regimes](https://github.com/aprimora-ai/Kappa-Attention-Regimes)** — Hallucination detection in large language models (AUC up to 94.2% on Phi-3)
+- **[Kappa-EDU](https://github.com/aprimora-ai/Kappa-Education)** — Student dropout prediction via topological engagement dynamics (OULAD dataset)
 
 ---
 
@@ -265,4 +267,4 @@ The papers document: (1) full mathematical formalism aligned with the Kappa Meth
 
 You are free to use, share, and adapt this work for any purpose, including commercial use, provided you give appropriate credit:
 
-> Ohio, David. *Kappa-FIN: Topological Early Warning System for Financial Market Crises*. 2026. https://github.com/odavidohio/kappa-fin
+> Ohio, David. *Kappa-FIN: Topological Early Warning System for Financial Market Crises*. 2026. https://github.com/aprimora-ai/Kappa-FIN
