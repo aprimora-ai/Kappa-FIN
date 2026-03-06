@@ -5,7 +5,7 @@
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18883585.svg)](https://doi.org/10.5281/zenodo.18883585)
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/)
-[![Part of Kappa-Method](https://img.shields.io/badge/Kappa-Method-ecosystem-green)](https://github.com/odavidohio/kappa-method)
+[![Part of Kappa-Method](https://img.shields.io/badge/Kappa-Method-ecosystem-green)]([https://github.com/odavidohio/kappa-method](https://github.com/aprimora-ai/Kappa-Method.git))
 
 Kappa-FIN applies the **Kappa Method** — persistent homology H₁ + Forman-Ricci curvature on rolling correlation networks — to detect systemic risk precursors in financial markets weeks to months before crises materialize.
 
