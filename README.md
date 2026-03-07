@@ -232,7 +232,7 @@ Formal peer-review-ready write-ups of the method and its financial validation ar
 | Language | File |
 |---|---|
 | Portuguese | [`paper/artigo_kappa_fin_pt_v3.pdf`](paper/artigo_kappa_fin_pt_v3.pdf) |
-| English | [`paper/artigo_kappa_fin_en_v3.pdf`](paper/artigo_kappa_fin_en_v3.pdf) |
+| English | [`paper/artigo_kappa_fin_en_v2.pdf`](paper/artigo_kappa_fin_en_v2.pdf) |
 
 The papers document: (1) full mathematical formalism aligned with the Kappa Method README; (2) GFC 2008 case-study results with dual-crossing timeline; (3) COVID-19 correct-negative result; (4) reproducibility block with exact parameters and SHA-256 checksums.
 
