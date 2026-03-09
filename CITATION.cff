@@ -2,12 +2,12 @@ cff-version: 1.2.0
 message: "If you use Kappa-FIN or the Kappa Method in your research, please cite as below."
 type: software
 title: "Kappa-FIN: Topological Early Warning System for Financial Market Crises"
-version: "0.1.0"
-date-released: "2026-03-06"
-doi: 10.5281/zenodo.18883585
+version: "3.0.0"
+date-released: "2026-03-09"
+doi: 10.5281/zenodo.18883821
 license: CC-BY-4.0
-url: "https://github.com/odavidohio/kappa-fin"
-repository-code: "https://github.com/odavidohio/kappa-fin"
+url: "https://github.com/aprimora-ai/Kappa-FIN"
+repository-code: "https://github.com/aprimora-ai/Kappa-FIN"
 
 authors:
   - family-names: "Ohio"
@@ -15,45 +15,58 @@ authors:
     email: "odavidohio@gmail.com"
 
 abstract: >
-  Kappa-FIN applies the Kappa Method — persistent homology H₁ of rolling
+  Kappa-FIN v3 applies the Kappa Method — persistent homology H₁ of rolling
   correlation networks (Spearman + Ledoit-Wolf shrinkage) combined with
   Forman-Ricci curvature — to detect systemic risk precursors in financial
-  markets weeks to months before crises materialize. The system uses two
-  complementary criteria: the Rayleigh criterion (Ohio Number Oh(t), derived
-  from H₁ topological mass relative to a CALM baseline) and the Prandtl
-  criterion (structural memory Φ(t), a leaky integrator with γ=0.985 of
-  negative curvature accumulation). Dual crossing detection with automated
-  CALM baseline identification (KCPT anti-contamination penalty) avoids
-  false positives from exogenous shocks. Demonstrated case study: ~60-day
-  lead time on the 2008 Global Financial Crisis; correct negative on
-  COVID-19 exogenous shock. Part of the Kappa Method ecosystem validating
-  the Law of Ohio (Organized Hallucination In Optimization) across financial
-  markets, LLMs, and educational systems.
+  markets weeks to months before crises materialize. Version 3 extends
+  validation from 7 to 17 historical scenarios (1985–2023) and formalizes
+  the Structural Pressurization Signature (SPS): a joint condition on the
+  five canonical Kappa observables Oh(t), Φ(t), η(t), Ξ(t), and DEF(t)
+  that constitutes a prospective, falsifiable regime transition warning
+  requiring no prior knowledge of the event's cause or timing. The CALM
+  ensemble (v4.6 + KCPT penalty, median aggregation) gives Oh(t) = 1
+  invariant semantics across all scenarios. Derived metrics: structural
+  viscosity νs and preparation ratio PR. Results across 17 scenarios with
+  identical parameters and no per-scenario tuning: sensitivity 8/8 for
+  scenarios satisfying the SPS criterion; specificity 5/5 — no false
+  positives across five large drawdown events. Part of the Kappa Method
+  ecosystem validating the Law of Ohio (Organized Hallucination In
+  Optimization) across financial markets, LLMs, and educational systems.
 
 keywords:
   - topological data analysis
   - persistent homology
+  - Forman-Ricci curvature
   - financial markets
   - systemic risk
   - early warning signals
-  - Forman-Ricci curvature
   - correlation networks
+  - Structural Pressurization Signature
   - Kappa Method
   - Law of Ohio
+  - regime detection
+  - structural viscosity
   - 2008 financial crisis
   - COVID-19 market crash
-  - regime detection
+  - SVB 2023
+  - EM crisis 2018
 
 references:
   - type: software
     title: "Kappa: A Method for Informational Regime Detection via Geometry and Dynamics"
-    url: "https://github.com/odavidohio/kappa-method"
+    url: "https://github.com/aprimora-ai/Kappa-Method"
     authors:
       - family-names: "Ohio"
         given-names: "David"
   - type: software
     title: "Kappa-Attention-Regimes: Hallucination Detection in LLMs"
-    url: "https://github.com/odavidohio/kappa-attention-regimes"
+    url: "https://github.com/aprimora-ai/Kappa-Attention-Regimes"
+    authors:
+      - family-names: "Ohio"
+        given-names: "David"
+  - type: software
+    title: "Kappa-Education: Dropout Prediction via Topological Engagement Dynamics"
+    url: "https://github.com/aprimora-ai/Kappa-Education"
     authors:
       - family-names: "Ohio"
         given-names: "David"

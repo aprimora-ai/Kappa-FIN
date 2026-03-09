@@ -7,10 +7,11 @@
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/)
 [![Part of Kappa-Method](https://img.shields.io/badge/Kappa--Method-ecosystem-brightgreen)](https://github.com/aprimora-ai/Kappa-Method)
 
-Kappa-FIN applies the **Kappa Method** — persistent homology H₁ + Forman-Ricci curvature on rolling correlation networks — to detect systemic risk precursors in financial markets weeks to months before crises materialize.
+Kappa-FIN applies the **Kappa Method** — persistent homology H₁ + Forman-Ricci curvature on rolling correlation networks — to detect systemic risk precursors in financial markets weeks to months before crises materialize. Version 3 extends validation to **17 historical scenarios (1985–2023)** and formalizes the **Structural Pressurization Signature (SPS)** as a prospective, falsifiable detection criterion over the full five-observable vector.
 
 **Author:** David Ohio · [odavidohio@gmail.com](mailto:odavidohio@gmail.com) · Independent Researcher  
-**Repository:** [github.com/aprimora-ai/Kappa-FIN](https://github.com/aprimora-ai/Kappa-FIN)
+**Repository:** [github.com/aprimora-ai/Kappa-FIN](https://github.com/aprimora-ai/Kappa-FIN)  
+**Paper (v3):** [`paper/artigo_kappa_fin_en_v3.pdf`](paper/artigo_kappa_fin_en_v3.pdf)
 
 ---
 
@@ -18,14 +19,17 @@ Kappa-FIN applies the **Kappa Method** — persistent homology H₁ + Forman-Ric
 
 Financial crises do not emerge from chaos — they emerge from **organized topological coherence**.
 
-The Kappa Method quantifies this via two complementary criteria:
+As asset prices decouple from fundamentals, the correlation network transitions from a sparse, diverse, dissipative configuration to a rigid, memory-laden one. The Kappa-FIN method tracks this transition continuously through five structural observables:
 
-| Criterion | Observable | Meaning |
+| Observable | Symbol | Meaning |
 |---|---|---|
-| **Rayleigh** | Ohio Number `Oh(t) = Ξ(t) / Ξ_c` | Structural coupling relative to the calm baseline |
-| **Prandtl** | Damage Integral `φ(t)` | Accumulated excess exposure above the pre-crossing threshold |
+| **Ohio Number** | `Oh(t)` | Topological pressure relative to the healthy baseline |
+| **Structural Memory** | `Φ(t)` | Accumulated curvature negativity above CALM floor |
+| **Dynamic Rigidity** | `η(t)` | Resistance to structural reorganization |
+| **Structural Diversity** | `Ξ(t)` | Active topological degrees of freedom |
+| **State-Phase Divergence** | `DEF(t)` | Self-consistency of the system's structural trajectory |
 
-A **dual crossing** — `Oh > 1` followed by `φ > φ_c` — constitutes a confirmed structural regime change (not a false alarm).
+A **Structural Pressurization Signature (SPS)** — simultaneous activation of all five observables in the direction of structural lock-in — constitutes a confirmed regime transition warning, prospective and independent of the event's cause.
 
 ---
 
@@ -38,55 +42,76 @@ Market prices (yfinance)
 Log-returns  ──► Rolling 22-day window
         │
         ▼
-Spearman correlation matrix  ──► Ledoit shrinkage ──► Distance matrix
+Spearman correlation + Ledoit-Wolf shrinkage ──► Distance matrix
         │
         ▼
 k-NN graph (k=5)
-    ├── Forman-Ricci curvature  ──► η(t) = 1 / (|κ| + η_floor)
+    ├── Forman-Ricci curvature  ──► η(t) = 1 / (|κ̄| + floor)
     └── Rips complex (GUDHI)
             │
             ▼
-    H₁ persistent homology ──► entropy, dominance, β₁ count, mass
+    H₁ persistent homology ──► entropy, dominance, β₁, total mass
             │
             ▼
-    v_raw = entropy × (1 − dominance)
-            │
-            ▼
-CALM identification (automated scan, KCPT penalty)
+CALM ensemble identification (KCPT penalty v4.6, median aggregation)
         │
         ▼
-    Ξ(t) = η_ref / η(t)     ──► Oh(t) = Ξ(t) / Ξ_c       [Rayleigh]
-    φ(t) = γ·φ(t-1) + max(Oh − Oh_pre − δ, 0)             [Prandtl]
+    Oh(t) = M₁(t) / (M₁_CALM + ε)              [Rayleigh criterion]
+    Φ(t)  = γ·Φ(t-1) + max(0, −κ̄(t) − κ̄_CALM) [Prandtl criterion]
+    Ξ(t)  = h₁_count(t) / Ξ_c
+    DEF(t)= 1 − |cos(S̃(t), ΔS̃(t))|
         │
         ▼
-Dual crossing detection (sensitivity + confirmation persistence)
+Structural Pressurization Signature (SPS) — all six conditions joint
         │
         ▼
-Analysis report + phase plots + warming indicators
+Regime transition warning + viscosity νs + preparation ratio PR
 ```
 
 ---
 
-## Validated Crisis Scenarios
+## Validated Scenarios — Version 3 (17 scenarios, 1985–2023)
 
-| Crisis | Period | Tickers | Result |
-|---|---|---|---|
-| **GFC 2008** | 2005–2010 | 14 ETFs¹ | ✅ φ crossing confirmed: **2008-07-17** (~60 days before Lehman) |
-| **COVID-19 2020** | 2018–2021 | 14 ETFs | ✅ **Correct negative** — no structural precursor detected (exogenous shock) |
-| **1987 Crash** | 1985–1989 | Equity ETFs/proxies | ⚠️ No crossing detected (data universe limitation) |
-| **Dot-com 2000** | 1999–2003 | SPY, QQQ, DIA, GLD, TLT | ✅ φ crossing confirmed: 2002-08-21 (slow-motion structural collapse) |
-| **Volmageddon 2018** | 2017–2019 | Equities + VIX proxies | ✅ Oh crossing confirmed: 2019-09-25 |
-| **Euro/Taper 2011** | 2009–2015 | Multi-asset | 🔄 In progress |
-| **Rates 2022** | 2021–2023 | Bonds + equities | 🔄 In progress |
+| Scenario | ∫Φ | νs | f_K | Result |
+|---|---|---|---|---|
+| **GFC 2008** | 8.05 | 700.4 | 30.4% | ✅ DETECTED — ~95 days before Lehman |
+| **Eurozone 2011** | 24.1 | 8.2 | 6.7% | ✅ DETECTED — ~1 week before ECB/IMF intervention |
+| **EU Housing 2007** | 104.9 | 18.4 | 50.1% | ✅ DETECTED |
+| **EM Crisis 2018** | 114.3 | 10.0 | 64.2% | ✅ DETECTED — highest f_K in dataset |
+| **SVB 2023** | 182.9 | 29.5 | 32.0% | ✅ DETECTED — post-2020 validation |
+| **China 2015** | 51.0 | 4.7 | 6.9% | ✅ DETECTED |
+| **Commodities 2014** | 37.3 | 1.0 | 6.1% | ✅ DETECTED |
+| **Global Equity 2015** | 24.1 | 3.0 | 4.4% | ✅ DETECTED |
+| **COVID-19 2020** | 413.6† | — | 58.1% | ✅ CORRECT NEGATIVE — exogenous shock |
+| **Rates 2022** | 14.7 | — | 8.1% | ✅ CORRECT NEGATIVE |
+| **Brexit 2016** | 15.0 | — | 7.1% | ✅ CORRECT NEGATIVE |
+| **Taper Tantrum 2013** | ~0 | NaN | 4.5% | ✅ CORRECT NEGATIVE |
+| **Repo Crisis 2019** | ~0 | NaN | 53.9% | ✅ CORRECT NEGATIVE |
+| **Volmageddon 2018** | 21.4 | — | 43.9% | ~ SPEED-LIMITED (sub-window event) |
+| **Flash Crash 2010** | 34.0 | — | 43.9% | ~ SPEED-LIMITED |
+| **LTCM 1998** | ~0 | NaN | 56.9% | · NON-DETECTION (Katashi-improdutive) |
+| **Crash 1987** | weak | — | — | ~ PARTIAL SIGNAL |
 
-> **Note on COVID-19:** The absence of a signal is the expected and scientifically correct result. The Kappa Method detects *endogenous* structural deterioration — the gradual loss of adaptive capacity that precedes self-generated crises. The COVID-19 crash was an exogenous shock with no internal structural precursor. This discriminative capacity (distinguishing endogenous collapse from exogenous shock) is absent from conventional risk metrics.
+> † COVID-19: ∫Φ accumulates *after* the shock, not before. The SPS was not satisfied pre-event — correct negative by structural timing, not post-hoc exclusion.
+
+**Sensitivity: 8/8** for scenarios satisfying the SPS criterion. **Specificity: 5/5** — no false positives across five large drawdown events.
 
 ---
 
-> ¹ HYG (iShares HY Corporate Bond ETF) excluded: launched April 2007, no data for the 2006 pre-crisis window.
-> USO (US Oil Fund ETF) excluded: late-start NaN rows shift `dates[0]` to May 2006, preventing the 504-day
-> CALM scan from finding a valid window starting in January 2006. Both are data availability constraints,
-> not methodological choices. The ticker list used in the study is declared in `scripts/run_gfc2008.py`.
+## Structural Pressurization Signature (SPS)
+
+Formal detection criterion — Definition 3.1 of the v3 paper:
+
+```
+(i)   Oh(t)  > Oh_pre          — topological pressure above CALM ceiling
+(ii)  Φ(t)   > Φ_c             — structural memory active
+(iii) ΔΦ(t)  > 0               — memory accumulating, not dissipating
+(iv)  η(t)   > η_ref            — dynamic rigidity above baseline
+(v)   Ξ(t)   < Ξ_c             — structural diversity collapsing
+(vi)  DEF(t) < DEF_q75(CALM)   — low angular divergence (directional coherence)
+```
+
+All thresholds are derived from the CALM ensemble of the same series — no external calibration required. The criterion is **prospective**: requires no prior knowledge of whether a crisis will occur, its timing, or its cause. It is **falsifiable**: SPS without subsequent disruption = false positive, must be reported.
 
 ---
 
@@ -106,93 +131,65 @@ pip install -e .
 ## Quickstart
 
 ```bash
-# GFC 2008 (canonical validation)
-python scripts/run_gfc2008.py --out results/gfc2008
+# Run all 17 scenarios (v3 engine)
+python scripts/run_scenarios_v3.py
 
-# COVID 2020
-python scripts/run_covid2020.py
+# Single scenario
+python scripts/run_scenarios_v3.py gfc2008
 
-# Fed rate hike cycle 2022
-python scripts/run_rates2022.py
+# Comparative typology analysis
+python scripts/run_typology_v3.py
 ```
 
 ### From Python
 
 ```python
-from kappa_fin import Config, run
+from kappa_fin.engine_v3 import run_scenario
 
-cfg = Config(
-    tickers=["SPY", "QQQ", "IWM", "XLF", "XLE", "XLK", "XLV",
-             "TLT", "IEF", "LQD", "HYG", "GLD", "USO", "DIA"],
-    start="2006-01-01",
-    end="2010-07-01",
-    calm_policy="scan",
-    calm_search_to="2007-06-30",
-    calm_length_days=504,
-    delta=0.08,
-    gamma=0.985,
-    pre_q=0.968,
-    out="./results/gfc2008",
+result = run_scenario(
+    scenario_id="gfc2008",
+    out="./results/v3_gfc2008"
 )
-
-run(cfg)
+# result contains: Oh, Phi, eta, Xi, DEF time series
+# + phi_crossing, nu_s, PR, f_K, SPS duration
 ```
 
 ---
 
 ## Outputs
 
-Each run produces in `--out` directory:
+Each scenario run produces in `results/v3_<scenario>/`:
 
 | File | Description |
 |---|---|
-| `kappa_fin_state.csv` | Full time series: η, Ξ, Oh, φ, H₁ observables |
-| `analysis_report.txt` | Crossing dates, warming indicators, calibration params |
-| `observables.png` | H₁ entropy, dominance, v_raw, mean correlation |
-| `ohio_number.png` | Oh(t) with CALM end and threshold lines |
-| `damage_phi.png` | φ(t) with φ_c threshold |
+| `kappa_v3_state.csv` | Full time series: Oh, Φ, η, Ξ, DEF, v_raw, Katashi flag |
+| `kappa_v3_report.txt` | Crossing dates, SPS duration, νs, PR, CALM parameters |
+| `kappa_v3_dashboard.png` | 4-panel dashboard: Oh(t), Φ(t), η(t)/Ξ(t), DEF(t) |
+| `kappa_v3_viscosity.csv` | Derived metrics: νs, PR, f_K, τ_SPS per scenario |
+
+Comparative analysis (`run_typology_v3.py`) produces in `results/typology_v3/`:
+
+| File | Description |
+|---|---|
+| `kappa_v3_metrics.csv` | All 17 scenarios × all metrics |
+| `kappa_v3_table.tex` | LaTeX table for paper |
+| `kappa_v3_figure.png` | 4-panel comparative figure |
 
 ---
 
 ## Key Parameters
 
-| Parameter | Default | Description |
+| Parameter | Value | Description |
 |---|---|---|
 | `window` | 22 | Rolling window (trading days) |
 | `k` | 5 | k-NN graph connectivity |
-| `calm_length_days` | 504 | CALM segment length (~2 trading years) |
-| `calm_search_to` | — | Search CALM before this date |
+| `gamma` | 0.97 | Structural memory decay |
 | `delta` | 0.08 | Damage sensitivity |
-| `gamma` | 0.985 | Structural memory decay — γ ∈ [0.98, 0.99] |
-| `pre_q` | 0.968 | Quantile for Oh baseline |
-| `oh_persist_sens` | 2 | Sensitivity persistence (days) |
-| `oh_persist_confirm` | 5 | Confirmation persistence (days) |
+| `pre_q` | 0.968 | CALM quantile for Oh threshold |
+| `dep` | spearman+LW(λ=0.05) | Correlation estimator |
+| CALM | ensemble v4.6 + KCPT | Automated baseline identification |
 
----
-
-## CALM Identification (v4.6)
-
-The baseline period ("CALM") is identified automatically via a scanning algorithm that minimizes structural volatility:
-
-```
-calm_score = std(η) + std(mean_corr) + mean|Δη| + mean|Δmean_corr| + 0.25·mean(v_raw)
-           + penalty_knee_phi_tail    # v4.6: penalizes internal phase transitions
-```
-
-The **knee-phi-tail penalty** (KCPT) prevents the algorithm from selecting a baseline window that itself contains an incipient crisis, a subtle failure mode that affected earlier versions.
-
----
-
-## Theoretical Background
-
-Kappa-FIN is an empirical application of the **Law of Ohio** (Organized Hallucination In Optimization): information-processing systems losing access to external validation optimize internal coherence at the expense of reality correspondence.
-
-In financial markets: as price discovery degrades (systemic stress, correlated selling), the correlation network transitions from sparse/heterogeneous topology to a tightly organized, high-coherence configuration — precisely the signature H₁ persistent homology detects.
-
-This generalizes across domains:
-- **LLMs:** hallucinating models show 15–18% higher topological coherence than factual responses → [Kappa-LLM](https://github.com/aprimora-ai/Kappa-Attention-Regimes)
-- **Education:** dropout students show φ-crossing weeks before disengagement → [Kappa-EDU](https://github.com/aprimora-ai/Kappa-Education)
-- **Financial markets:** pre-crisis periods show organized H₁ mass growth → this repository
+**No per-scenario parameter tuning.** Identical parameters across all 17 scenarios.
 
 ---
 
@@ -201,40 +198,46 @@ This generalizes across domains:
 ```
 kappa-fin/
 ├── kappa_fin/
-│   ├── __init__.py          # Package metadata
-│   └── engine.py            # Core pipeline (Config, run, all components)
+│   ├── __init__.py
+│   ├── engine.py          # v1/v2 engine (preserved for reference)
+│   └── engine_v3.py       # v3 engine — CALM ensemble, DEF, νs, PR, SPS
 ├── scripts/
-│   ├── run_gfc2008.py       # 2008 Global Financial Crisis
-│   ├── run_covid2020.py     # COVID-19 crash
-│   ├── run_dotcom2000.py    # Dot-com bubble
-│   ├── run_rates2022.py     # Fed rate hike / bond crisis 2022
-│   ├── save_study_data.py   # Download & version-lock price data
-│   └── verify_data.py       # Verify SHA-256 checksums
-├── notebooks/               # Jupyter demo notebooks (coming soon)
+│   ├── run_scenarios_v3.py   # 17-scenario registry + executor (v3)
+│   ├── run_typology_v3.py    # Comparative analysis across all scenarios
+│   └── run_*.py              # Individual scenario scripts (v1/v2, preserved)
+├── results/
+│   ├── typology_v3/          # Comparative outputs (metrics, table, figure)
+│   └── v3_*/                 # Per-scenario v3 outputs
+├── paper/
+│   ├── artigo_kappa_fin_en_v3.pdf   # Version 3 paper (English)
+│   ├── artigo_kappa_fin_en_v2.pdf   # Version 2 (preserved)
+│   └── figures/
 ├── docs/
-│   └── method.md            # Mathematical documentation
-├── data/results/            # Curated result CSVs (versioned)
-├── paper/figures/           # Publication-quality figures
-├── tests/                   # Unit tests
+│   └── method.md
+├── tests/
 ├── requirements.txt
 ├── setup.py
-├── setup_data.py            # First-time data download helper
 ├── CITATION.cff
-└── LICENSE                  # CC BY 4.0
+└── LICENSE
 ```
 
 ---
 
-## Academic Papers
+## Academic Paper
 
-Formal peer-review-ready write-ups of the method and its financial validation are available in the `paper/` directory:
+> Ohio, David. *Topological Detection of Regime Transitions in Financial Markets: The Kappa-FIN Method*. Version 3 — Extended Validation (17 Scenarios, 1985–2023) with Prospective Detection Criterion. Zenodo, 2026. DOI: [10.5281/zenodo.18883821](https://doi.org/10.5281/zenodo.18883821)
 
-| Language | File |
-|---|---|
-| Portuguese | [`paper/artigo_kappa_fin_pt_v3.pdf`](paper/artigo_kappa_fin_pt_v3.pdf) |
-| English | [`paper/artigo_kappa_fin_en_v3.pdf`](paper/artigo_kappa_fin_en_v3.pdf) |
+Full paper: [`paper/artigo_kappa_fin_en_v3.pdf`](paper/artigo_kappa_fin_en_v3.pdf)
 
-The papers document: (1) full mathematical formalism aligned with the Kappa Method README; (2) GFC 2008 case-study results with dual-crossing timeline; (3) COVID-19 correct-negative result; (4) reproducibility block with exact parameters and SHA-256 checksums.
+---
+
+## Theoretical Background
+
+Kappa-FIN is an empirical application of the **Law of Ohio** (Organized Hallucination In Optimization): information-processing systems losing access to external validation progressively optimize internal coherence at the expense of reality correspondence — a process detectable through topological invariants.
+
+In financial markets: as price discovery degrades and assets decouple from fundamentals, the correlation network becomes self-referentially coherent — high rigidity, growing memory, collapsing topological diversity. The observable vector S(t) = (Oh, Φ, η, Ξ, DEF) tracks this migration continuously. The SPS is the joint signature of all five observables entering a pressurization regime simultaneously.
+
+The method's attractor-tracking design supports a natural trajectory toward **probabilistic regime forecasting**: as the scenario corpus grows, the binary SPS warning becomes a nearest-neighbor query in observable space — what fraction of historical trajectories with similar S(t) underwent a regime transition within L days?
 
 ---
 
@@ -244,6 +247,7 @@ The papers document: (1) full mathematical formalism aligned with the Kappa Meth
 @software{ohio2026kappafin,
   author    = {Ohio, David},
   title     = {Kappa-FIN: Topological Early Warning System for Financial Market Crises},
+  version   = {3.0.0},
   year      = {2026},
   doi       = {10.5281/zenodo.18883821},
   url       = {https://github.com/aprimora-ai/Kappa-FIN},
@@ -256,15 +260,13 @@ The papers document: (1) full mathematical formalism aligned with the Kappa Meth
 ## Related Work
 
 - **[Kappa-Method](https://github.com/aprimora-ai/Kappa-Method)** — Theoretical foundation: Oh, Φ, η, Ξ, DEF observables and the Law of Ohio
-- **[Kappa-LLM / Kappa-Attention-Regimes](https://github.com/aprimora-ai/Kappa-Attention-Regimes)** — Hallucination detection in large language models (AUC up to 94.2% on Phi-3)
-- **[Kappa-EDU](https://github.com/aprimora-ai/Kappa-Education)** — Student dropout prediction via topological engagement dynamics (OULAD dataset)
+- **[Kappa-LLM / Kappa-Attention-Regimes](https://github.com/aprimora-ai/Kappa-Attention-Regimes)** — Hallucination detection in LLMs (AUC up to 94.2% on Phi-3, Mistral, Llama)
+- **[Kappa-Education](https://github.com/aprimora-ai/Kappa-Education)** — Student dropout prediction via topological engagement dynamics (OULAD dataset)
 
 ---
 
 ## License
 
 [Creative Commons Attribution 4.0 International (CC BY 4.0)](LICENSE)
-
-You are free to use, share, and adapt this work for any purpose, including commercial use, provided you give appropriate credit:
 
 > Ohio, David. *Kappa-FIN: Topological Early Warning System for Financial Market Crises*. 2026. https://github.com/aprimora-ai/Kappa-FIN
